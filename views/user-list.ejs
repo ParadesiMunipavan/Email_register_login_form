@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Page</title>
+</head>
+<body>
+  <h1>Admin Page</h1>
+  <h2>Delete User by ID</h2>
+  <form action="/delete-user" method="POST">
+    <label for="userId">User ID:</label>
+    <input type="text" id="userId" name="userId" required>
+    <button type="submit">Delete User</button>
+  </form>
+  <h2>User List</h2>
+  <ul>
+    <% users.forEach(user => { %>
+      <li>
+        <%= user.username %> - 
+        <form action="/delete-user" method="POST" style="display:inline;">
+          <input type="hidden" name="userId" value="<%= user._id %>">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }); %>
+  </ul>
+  <br>
+  <a href="/logout">Logout</a>
+</body>
+</html>
